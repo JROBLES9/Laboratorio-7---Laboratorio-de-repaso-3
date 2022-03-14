@@ -16,6 +16,7 @@ namespace Laboratorio_7___Laboratorio_de_repaso_3
         List <Propietario> Propietarios = new List <Propietario> ();
         List<Propiedad> Propiedades = new List<Propiedad>();
         List<DGVPropietario> DGVPropietarios = new List<DGVPropietario>();
+        List<DGVPropietario> DGVPropietarios3AltoBajo = new List<DGVPropietario>();
         public Form1()
         {
             InitializeComponent();
@@ -24,6 +25,7 @@ namespace Laboratorio_7___Laboratorio_de_repaso_3
         private void buttonCuotaMantenimiento_Click(object sender, EventArgs e)
         {
             DGVPropietarios = DGVPropietarios.OrderBy(x => x.CuotaMantenimiento).ToList();
+            MostrarDGV(DGVPropietarios);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -77,11 +79,45 @@ namespace Laboratorio_7___Laboratorio_de_repaso_3
                 }
             }
 
+            //Cuota mas alta
+            DGVPropietario dGVPropietario1 = new DGVPropietario();
+            //Encuentra el dato mayor
+            dGVPropietario1 = DGVPropietarios.OrderByDescending(x => x.CuotaMantenimiento).First();
+            
+            //Muestra el nombre completo y cuota del dato mayor
+            labelPropietarioCuotaMasAlta.Text = dGVPropietario1.Nombre + " " + dGVPropietario1.Apellido;
+            labelCuotaMasAlta.Text = dGVPropietario1.CuotaMantenimiento.ToString();
+
+            MostrarDGV(DGVPropietarios);
+        }
+
+        private void MostrarDGV(List <DGVPropietario> baseDatos)
+        {
             dataGridView.DataSource = null;
             dataGridView.Show();
 
-            dataGridView.DataSource = DGVPropietarios;
+            dataGridView.DataSource = baseDatos;
             dataGridView.Show();
+        }
+
+        private void button3MantenimientosMasAltos_Click(object sender, EventArgs e)
+        {
+            DGVPropietarios3AltoBajo.Clear();
+            for (int i = 0; i < 3; i++)
+            DGVPropietarios3AltoBajo.Add(DGVPropietarios.OrderByDescending(x => x.CuotaMantenimiento)
+                .ElementAt(i));
+            
+            MostrarDGV(DGVPropietarios3AltoBajo);
+        }
+
+        private void button3MantenimientosMasBajos_Click(object sender, EventArgs e)
+        {
+            DGVPropietarios3AltoBajo.Clear();
+            for (int i = 0; i < 3; i++)
+                DGVPropietarios3AltoBajo.Add(DGVPropietarios.OrderBy(x => x.CuotaMantenimiento)
+                    .ElementAt(i));
+
+            MostrarDGV(DGVPropietarios3AltoBajo);
         }
     }
 }

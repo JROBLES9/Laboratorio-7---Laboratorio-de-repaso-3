@@ -103,6 +103,7 @@
             this.button3MantenimientosMasAltos.TabIndex = 6;
             this.button3MantenimientosMasAltos.Text = "3 Mantenimientos mas altos";
             this.button3MantenimientosMasAltos.UseVisualStyleBackColor = true;
+            this.button3MantenimientosMasAltos.Click += new System.EventHandler(this.button3MantenimientosMasAltos_Click);
             // 
             // button3MantenimientosMasBajos
             // 
@@ -112,6 +113,7 @@
             this.button3MantenimientosMasBajos.TabIndex = 7;
             this.button3MantenimientosMasBajos.Text = "3 Mantenimientos mas bajos";
             this.button3MantenimientosMasBajos.UseVisualStyleBackColor = true;
+            this.button3MantenimientosMasBajos.Click += new System.EventHandler(this.button3MantenimientosMasBajos_Click);
             // 
             // Form1
             // 
